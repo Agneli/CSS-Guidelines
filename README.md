@@ -77,12 +77,22 @@ This too is fine… Whichever method you choose, the following rules and
 guidelines apply. The only notable difference is with regards our table of
 contents and our section titles. Read on for further explanation…
 
-Algumas pessoas preferem trabalhar com um arquivo único e grande. Isto é bom, 
+Algumas pessoas preferem trabalhar com um único arquivo grande. Isto é bom, e indo
+de encontro com as diretrizes aqui descritas nao tem problemas algum. Desde que eu
+comecei a trabalhar com SASS, eu tenho usado bastante includes no meus arquivos.
+Isto é bom tambem... Seja qual for seu método, as seguintes regras e diretrizes se
+aplicam. A única diferença notável é com respeito a nossa tabela de
+conteúdo e títulos nossa seção. Leia sobre para mais explicações ...
 
 ### Table of contents
+### Tabela de conteúdo
 
 At the top of stylesheets, I maintain a table of contents which will detail the
 sections contained in the document, for example:
+
+No topo de sua folha de estilo, eu mantenho a tabela de conteúdo com os detalhes
+das seções contidas no documento, veja o exemplo:
+
 
     /*------------------------------------*\
         $CONTENTS
@@ -93,12 +103,30 @@ sections contained in the document, for example:
      * FONT-FACE...........Import brand font files
      */
 
+     /*------------------------------------*\
+        $CONTEÚDO
+    \*------------------------------------*/
+    /**
+     * CONTEÚDO............Você esta lendo isso!
+     * RESET...............Setando nosso reset para o padrão
+     * FONT-FACE...........Importando a marca e arquivos de fontes tipográficas
+     */
+
+
+
 This will tell the next developer(s) exactly what they can expect to find in
 this file. Each item in the table of contents maps directly to a section title.
+
+Isso irá falar ao próximo desenvolvedor exatamente oque ele pode esperar encontrar
+nesse arquivo. Cada item da tabela de conteúdo mapeia diretamente a um título de seção 
 
 If you are working in one big stylesheet, the corresponding section will also be
 in that file. If you are working across multiple files then each item in the
 table of contents will map to an include which pulls that section in.
+
+Se você esta trabalhando em uma grande folha de estilo, a seção correspondete tambem
+irá estar nesse arquivo. Se voce esta trabalhando em varios outros documentos onde cada item
+da tabela de conteúdo irá mapear 
 
 ### Section titles
 
