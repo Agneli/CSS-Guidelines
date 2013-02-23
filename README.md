@@ -1,30 +1,27 @@
-# General CSS notes, advice and guidelines
+# Notas gerais CSS, aconselhamento e orientações
 
 ---
 
-## Translations
+## Traduções
 
 * [Russian/русский](https://github.com/matmuchrapna/CSS-Guidelines/blob/master/README%20Russian.md)
-
+* [EUA/Inglês](https://github.com/csswizardry/CSS-Guidelines/blob/master/README.md)
+* [Brasil/Português](https://github.com/Ragaroto/CSS-Guidelines/blob/master/README.md)
 ---
 
-In working on large, long running projects with dozens of developers, it is
-important that we all work in a unified way in order to, among other things:
+Eu venho trabalhando duro, ao longo do projeto em andamento com centenas de desenvolvedores, é importante que todos nós trabalhemos de uma forma unificada, a fim de, entre outras coisas:
 
-* Keep stylesheets maintainable
-* Keep code transparent and readable
-* Keep stylesheets scalable
+* Manter as folhas de estilo sustentável
+* Manter o código transparente e legível
+* Manter a folha de estilo escalável
 
-There are a variety of techniques we must employ in order to satisfy these
-goals.
+Há uma variedade de técnicas que nós podemos empregar para manter a ordem e satisfazaer essas metas
 
-The first part of this document will deal with syntax, formatting and CSS
-anatomy, the second part will deal with approach, mindframe and attitude toward
-writing and architecting CSS. Exciting, huh?
+A primeira parte desse documento vai lidar com a formatação da sintaxe, formatando a anatomia do CSS, a segunda parte irá tratar com a aproximação, conteúdo e atitude em relação a escrita e arquitetura do css. Excitante né?
 
-## Contents
+## Conteúdo
 
-* [CSS document anatomy](#css-document-anatomy)
+* [Anatomia de Documento CSS](#css-document-anatomy)
   * [General](#general)
   * [One file vs. many files](#one-file-vs-many-files)
   * [Table of contents](#table-of-contents)
@@ -59,20 +56,19 @@ writing and architecting CSS. Exciting, huh?
 
 ---
 
-## CSS Document Anatomy
+## CSS Anatomia do documento
 
-No matter the document, we must always try and keep a common formatting. This
-means consistent commenting, consistent syntax and consistent naming.
+Não importa o documento, nós sempre devemos manter uma formatação comum. Isto significa comentário consistente, sintaxe consistente e nomeclatura consistente.
 
 ### General
 
-Limit your stylesheets to a maximum 80 character width where possible.
-Exceptions may be gradient syntax and URLs in comments. That’s fine, there’s
-nothing we can do about that.
+Limite suas folhas de estilo com a largura máxima de 80 caracteres por linha, quando possível.
+Exceções podem acontecer como a sintaxe de gradientes e URLs comentadas. Isto é bom, não há nada que podemos fazer sobre isso
 
-I prefer four (4) space indents over tabs and write multi-line CSS.
+Eu prefiro 4 espaços ao invés de TABs para identar multiplas-linhas de CSS
 
 ### One file vs. many files
+### Um arquivo vs. muitos arquivos
 
 Some people prefer to work with single, large files. This is fine, and by
 sticking to the following guidelines you’ll encounter no problems. Since moving
@@ -80,6 +76,8 @@ to Sass I have started sharding my stylesheets out into lots of tiny includes.
 This too is fine… Whichever method you choose, the following rules and
 guidelines apply. The only notable difference is with regards our table of
 contents and our section titles. Read on for further explanation…
+
+Algumas pessoas preferem trabalhar com um arquivo único e grande. Isto é bom, 
 
 ### Table of contents
 
