@@ -61,6 +61,7 @@ A primeira parte desse documento vai lidar com a formatação da sintaxe, format
 Não importa o documento, nós sempre devemos manter uma formatação comum. Isto significa comentário consistente, sintaxe consistente e nomeclatura consistente.
 
 ### General
+### Geral
 
 Limite suas folhas de estilo com a largura máxima de 80 caracteres por linha, quando possível.
 Exceções podem acontecer como a sintaxe de gradientes e URLs comentadas. Isto é bom, não há nada que podemos fazer sobre isso
@@ -81,17 +82,17 @@ Algumas pessoas preferem trabalhar com um único arquivo grande. Isto é bom, e 
 de encontro com as diretrizes aqui descritas nao tem problemas algum. Desde que eu
 comecei a trabalhar com SASS, eu tenho usado bastante includes no meus arquivos.
 Isto é bom tambem... Seja qual for seu método, as seguintes regras e diretrizes se
-aplicam. A única diferença notável é com respeito a nossa tabela de
-conteúdo e títulos nossa seção. Leia sobre para mais explicações ...
+aplicam. A única diferença notável é com respeito a nosso índice e títulos nossa 
+seção. Leia sobre para mais explicações ...
 
 ### Table of contents
-### Tabela de conteúdo
+### Índice
 
 At the top of stylesheets, I maintain a table of contents which will detail the
 sections contained in the document, for example:
 
-No topo de sua folha de estilo, eu mantenho a tabela de conteúdo com os detalhes
-das seções contidas no documento, veja o exemplo:
+No topo de sua folha de estilo, eu mantenho índice com os detalhes das seções 
+contidas no documento, veja o exemplo:
 
 
     /*------------------------------------*\
@@ -118,20 +119,25 @@ This will tell the next developer(s) exactly what they can expect to find in
 this file. Each item in the table of contents maps directly to a section title.
 
 Isso irá falar ao próximo desenvolvedor exatamente oque ele pode esperar encontrar
-nesse arquivo. Cada item da tabela de conteúdo mapeia diretamente a um título de seção 
+nesse arquivo. Cada item do índice mapeia diretamente um título de seção 
 
 If you are working in one big stylesheet, the corresponding section will also be
 in that file. If you are working across multiple files then each item in the
 table of contents will map to an include which pulls that section in.
 
-Se você esta trabalhando em uma grande folha de estilo, a seção correspondete tambem
-irá estar nesse arquivo. Se voce esta trabalhando em varios outros documentos onde cada item
-da tabela de conteúdo irá mapear 
+Se você esta trabalhando em uma grande folha de estilo, a seção correspondente tambem
+irá estar nesse arquivo. Se você estiver trabalhando em vários arquivos, então cada item no
+índice será mapeado para uma include que puxa essa seção dentro
+
 
 ### Section titles
+### Título das seções
 
 The table of contents would be of no use unless it had corresponding section
 titles. Denote a section thus:
+
+O índice seria inútil se não tem seção correspondente títulos. Indique uma 
+secção da seguinte forma:
 
     /*------------------------------------*\
         $RESET
@@ -140,15 +146,23 @@ titles. Denote a section thus:
 The `$` prefixing the name of the section allows us to run a find ([Cmd|Ctrl]+F)
 for `$[SECTION-NAME]` and **limit our search scope to section titles only**.
 
+Utilizando o prefixo '$' no nome permitirá que nós a encontremos em um FIND
+([cmd|ctrl]+F), pesquisando por '$[NOME DA SEÇÃO]' irá trazer apenas os títulos
+contendo o termo pesquisado.
+
 If you are working in one large stylesheet, you leave five (5) carriage returns
 between each section, thus:
+
+Se você esta trabalhando com uma folha estilo única e grande, você deixa cinco (5)
+quebras de linha entre cada seção, como abaixo:
+
 
     /*------------------------------------*\
         $RESET
     \*------------------------------------*/
-    [Our
+    [nosso
     reset
-    styles]
+    de estilos]
     
     
     
@@ -161,15 +175,27 @@ between each section, thus:
 This large chunk of whitespace is quickly noticeable when scrolling quickly
 through larger files.
 
+Esse grande espaço em branco é rapidamente perceptível quando você
+faz scroll rapidamente em um arquivo muito extensso. 
+
+
 If you are working across multiple, included stylesheets, start each of those
 files with a section title and there is no need for any carriage returns.
 
+Se você esta trabalhando em várias folhas de estilos através de includes nas seções, 
+não precisa se preucupar com esse espaço antes da seção.
+
 ## Source order
+## Ordem de Origem
 
 Try and write stylesheets in specificity order. This ensures that you take full
 advantage of inheritance and CSS’ first <i>C</i>; the cascade.
 
+Tente escrever a folha de estilos na sua ordem de especificidade. Isso garante
+a você uma grande vantagem da utilzação de heranças de CSS
+
 A well ordered stylesheet will be ordered something like this:
+Uma folha de estilo bem ordenada irá ser ordenada como algo assim:
 
 1. **Reset** – ground zero.
 2. **Elements** – unclassed `h1`, unclassed `ul` etc.
@@ -178,21 +204,45 @@ A well ordered stylesheet will be ordered something like this:
    extensions.
 5. **Style trumps** – error states etc.
 
+1. **Resets** - Alicérce.
+2. **Elementos** - Sem classes como 'h1', 'ul' e etc.
+3. **Objetos e abstrações** Genéricos e subjacentes a um padrão
+4. **Componentes** - Componentes completos construidos de outros objetos
+e extenções
+5. **Estilos Trunfos** - Estados de erros e etc.
+
+
 This means that—as you go down the document—each section builds upon and
 inherits sensibly from the previous one(s). There should be less undoing of
 styles, less specificity problems and all-round better architected stylesheets.
 
+Isso quer dizer que - conforme você vai descendo a página - cada seção irá carregar
+um estilo de herança superior(anterior). Dessa forma, a folha de estilo não irá
+desfazer outros estilos, apenas agregar, evitando problemas de especificidade e gerando
+uma arquitetura de herança melhor
+
+
 For further reading I cannot recommend Jonathan Snook’s
 [SMACSS](http://smacss.com) highly enough.
 
+Para uma leitura mais eu não posso recomendar Jonathan Snook
+[SMACSS](http://smacss.com) altamente o suficiente.
+
 ## Anatomy of rulesets
+## Anatomia do conjunto de regras
 
     [selector]{
         [property]:[value];
         [<- Declaration ->]
     }    
 
+    [seletor]{
+        [propriedade]:[valor];
+        [<- declaração ->]
+    }    
+
 I have a number of standards when structuring rulesets.
+Eu tenho um numero de padrões quando eu estruturo meu conjunto de regras
 
 * Use hyphen delimited class names (except for BEM notation,
   [see below](#naming-conventions))
@@ -202,6 +252,17 @@ I have a number of standards when structuring rulesets.
 * Indent vendor prefixed declarations so that their values are aligned
 * Indent our rulesets to mirror the DOM
 * Always include the final semi-colon in a ruleset
+
+* Uso hífem delimimintando o nome de classes (exceto para anotações BEM
+[veja abaixo] (#conveções de nome))
+* 4 espaços de identação
+* Multi-linhas
+* Declaração em ordem de relevância (NÃO Alfabética)
+* Indentação dos prefixos dos vendedores (como -webkit, -moz, -ms, -O) para
+alinhamento dos valores
+* Identaçõ dos nossos conjunto de regras para espelhar o DOM
+* Sempre incluir ponto-virgula no final da regra;
+
 
 A brief example:
 
@@ -223,16 +284,47 @@ A brief example:
             padding:0.25em;
         }
 
+    Um breve exemplo:
+
+    .widget{
+        padding:10px;
+        border:1px solid #BADA55;
+        background-color:#C0FFEE;
+        -webkit-border-radius:4px;
+           -moz-border-radius:4px;
+                border-radius:4px;
+    }
+        .widget-heading{
+            font-size:1.5rem;
+            line-height:1;
+            font-weight:bold;
+            color:#BADA55;
+            margin-right:-10px;
+            margin-left: -10px;
+            padding:0.25em;
+        }
+
+
 Here we can see that `.widget-heading` must be a child of `.widget` as we have
 indented the `.widget-heading` ruleset one level deeper than `.widget`. This is
 useful information to developers that can now be gleaned just by a glance at the
 indentation of our rulesets.
 
+Aqui nós podemos deduzir que '.widget-heading' deve ser filho de '.widget' porque nós
+identamos o '.widget-heading' com um recuo maior para dentro de '.widget'. Isto
+é uma informação útil para desenvolvedores que apenas com um olhar sobre o código
+podem notar a hierarquia.
+
 We can also see that `.widget-heading`’s declarations are ordered by their
 relevance; `.widget-heading` must be a textual element so we begin with our
 text rules, followed by everything else.
 
+Nós podemos ver tambem que '.widget' deve ser um elemento textual, então nós
+começamos com regras de texto seguindo por todo o resto.
+
 One exception to our multi-line rule might be in cases of the following:
+
+Uma seçao para nossa regra de multilinha pode ser para casos como o a seguir:
 
     .t10    { width:10% }
     .t20    { width:20% }
@@ -252,28 +344,54 @@ In this example (from [inuit.css’s table grid system](
 https://github.com/csswizardry/inuit.css/blob/master/inuit.css/partials/base/_tables.scss#L88))
 it makes more sense to single-line our CSS.
 
+Neste exemplo (do [inuit.css's table grid system (
+https://github.com/csswizardry/inuit.css/blob/master/inuit.css/partials/base/_tables.scss#L88))
+isso faz mais sentido em uma linha única do css
+
 ## Naming conventions
+## Conveção de Nomes
 
 For the most part I simply use hyphen delimited classes (e.g. `.foo-bar`, not
 `.foo_bar` or `.fooBar`), however in certain circumstances I use BEM (Block,
 Element, Modifier) notation.
 
+A maior parte eu simplemente uso hífem delimitando classes (ex '.foo-bar', não
+'.foo_bar' ou '.fooBar'), no entanto, em certas circunstâncias, eu uso o BEM (Block,
+Element, Modifier) de notação.
+
 <abbr title="Block, Element, Modifier">BEM</abbr> is a methodology for naming
 and classifying CSS selectors in a way to make them a lot more strict,
 transparent and informative.
 
+<abbr title="Block, Element, Modifier">BEM</abbr> é uma metodologia para nomeclatura
+e classificação de seletetores CSS de forma a torná-los muito mais rigoroso,
+transparente e informativo.
+
 The naming convention follows this pattern:
+
+A conveção de nome segue o padrão:
 
     .block{}
     .block__element{}
     .block--modifier{}
+
+    .bloco{}
+    .block__elemento{}
+    .bloco--modificador{}
 
 * `.block` represents the higher level of an abstraction or component.
 * `.block__element` represents a descendent of `.block` that helps form `.block`
   as a whole.
 * `.block--modifier` represents a different state or version of `.block`.
 
+* `.bloco` representa o mais alto nível da abstração do componente.
+* `.bloco__elemento` representa os descendentes de  `.bloco` que adjuda a formar `.bloco`
+  como um inteiro.
+* `.bloco--modificador` representa um estado ou versão diferente do `.bloco`.
+
 An **analogy** of how BEM classes work might be:
+
+Como **analogia** de como as classes BEM funcinam, podem ser:
 
     .person{}
     .person--woman{}
@@ -281,24 +399,50 @@ An **analogy** of how BEM classes work might be:
         .person__hand--left{}
         .person__hand--right{}
 
+    .pessoa{}
+    .pessoa--mulher{}
+        .pessoa__mao{}
+        .pessoa__mao--esquerda{}
+        .pessoa__mao--direita{}
+
 Here we can see that the basic object we’re describing is a person, and that a
 different type of person might be a woman. We can also see that people have
 hands; these are sub-parts of people, and there are different variations,
 like left and right.
 
+Aqui nós podemos ver que o objeto básico nós que estamos descrevendo é a pessoa,
+e que um tipo diferente de pessoa pode ser uma mulher. Nós tambem podemos ver que
+pessoa tem mãos; que são também sub-partes de pessoas e há variações diferentes,
+como esquerda e direita.
+
 We can now namespace our selectors based on their base objects and we can also
 communicate what job the selector does; is it a sub-component (`__`) or a
 variation (`--`)?
+
+Nós podemos agora nomear nossos seletores baseado em nossos objetos e tambem
+comunicar qual o trabalho que o seletor faz, mas isso é um sub-componente('__') 
+ou uma variação ('--')?
+
 
 So, `.page-wrapper` is a standalone selector; it doesn’t form part of an
 abstraction or a component and as such it named correctly. `.widget-heading`,
 however, _is_ related to a component; it is a child of the `.widget` construct
 so we would rename this class `.widget__heading`.
 
+Então '.page-wrapper' não é um seletor autonomo(standalone); que não faz parte 
+de uma abstracção ou de um componente conforme a nomeclatura correta. 
+'.widget-heading' entretanto, _é_ relacionado ao componente; que é filho do 
+'.widtget'. Entao nós devemos renomear  essa classe para '.widget__heading'
+
 BEM looks a little uglier, and is a lot more verbose, but it grants us a lot of
 power in that we can glean the functions and relationships of elements from
 their classes alone. Also, BEM syntax will typically compress (gzip) very well
 as compression favours/works well with repetition.
+
+BEM parece um pouco feio e verboso, porem isto garante a nós um bucado
+de força, e em que podemos aprender as funções e relaçoes entre elementos e
+classes sozinhos. Tambem, a sintaxe do BEM normalmente vai comprimir (gzip) muito
+bem com seu compressor favorito as partes que se repetem
 
 Regardless of whether you need to use BEM or not, always ensure classes are
 sensibly named; keep them as short as possible but as long as necessary. Ensure
@@ -307,34 +451,70 @@ to allow for greater reuse. Extensions of objects should be much more explicitly
 named (e.g. `.user-avatar-link`). Don’t worry about the amount or length of
 classes; gzip will compress well written code _incredibly_ well.
 
+Independentemente de saber se você precisa usar BEM ou não, sempre garanta que 
+suas classes estão sensívelmente nomeadas; mantenha elas longas o suficiente para
+compreensão de outros desenvolvedores, mas sempre o mais curta possível! Garanta
+que qualquer objeto ou abstração estao certamente nomeada (ex: '.ui-lista', '.midia')
+para permitir o re-uso. Extenções de objetos podem ser muito mais explicativas
+(ex: '.usuário-avatar-link'). Não se preucupoe sobre o tamanho de sua classes; a
+compressão gzip irá comprimir _incrivelmente_ bem.
+
+
 ### Classes in HTML
+
+### Classes em HTML
 
 In a bid to make things easier to read, separate classes is your HTML with two
 (2) spaces, thus:
+
+Em uma tentativa de tornar as coisas mais fáceisl de ler, separe suas classes
+em seu HTML com dois(2) espaços, assim:
 
     <div class="foo--bar  bar__baz">
 
 This increased whitespace should hopefully allow for easier spotting and reading
 of multiple classes.
 
+Isto aumententa o espaço em branco podendo ser muito útil e confortável para a leitura
+fácil e rápido de multiplas classes
+
 ### JS hooks
+### Gatilhosde Javascript
 
 **Never use a CSS _styling_ class as a JavaScript hook.** Attaching JS behaviour
 to a styling class means that we can never have one without the other.
+
+**Nunca use uma classes com estilos como um gatilho de Javascript**  Colocando
+comportamentos de Javascript em uma classe de estilo você estará condicionando/amarrando
+o estilo ao comportamento (engessando seu código), fazendo com que nunca poderemos 
+utilizar um sem o outro.
 
 If you need to bind to some markup use a JS specific CSS class. This is simply a
 class namespaced with `.js-`, e.g. `.js-toggle`, `.js-drag-and-drop`. This means
 that we can attach both JS and CSS to classes in our markup but there will never
 be any troublesome overlap.
 
+Se voce precisar bindar(amarrar) algum Javascript a uma marcação, use uma classe
+específica e única(sem estilos) para isso. Simplesmente faça isso nomeando com o
+prefixo '.js-', ex: '.js-alternar', '.js-arrastar-e-soltar'. Isto quer dizer que 
+você pode anexar ambos JS e CSS para a marcação, sem problemas de sobreposição ou
+estilos/comportamentos indesejados
+
     <th class="is-sortable  js-is-sortable">
+    </th>
+
+    <th class="e-organizar  js-e-organizar">
     </th>
 
 The above markup holds two classes; one to which you can attach some styling for
 sortable table columns and another which allows you to add the sorting
 functionality.
 
+A marcação acima contem duas (2) classes; uma com a classe em anexo que estiliza
+o elemento de cabeçalho e outro que adiciona sua funcinalidade
+
 ### Internationalisation
+### Internacionalização
 
 Despite being a British developer—and spending all my life writing <i>colour</i>
 instead of <i>color</i>—I feel that, for the sake of consistency, it is better
@@ -342,6 +522,15 @@ to always use US-English in CSS. CSS, as with most (if not all) other languages,
 is written in US-English, so to mix syntax like `color:red;` with classes like
 `.colour-picker{}` lacks consistency. I have previously suggested and advocated
 writing bilingual classes, for example:
+
+Apesar de ser um desenvolvedor britânico e falar & escrever por toda minha vida
+<i>colour</i> ao invés de <i>color</i>- Eu sinto que para ter uma cosistencia maior
+é sempre bom usar o inglês americano no css, ja que a maioria dos outros 
+desenvolvedores de outros países(inclusive nós brasileiros) escrevem seus códigos 
+em inglês americano, então notem que misturar a sintaxe como 'color:red;' com o 
+'colour-picker{};'fica muito inconsistente. Eu tenho previamente sugerido
+e advogado escrever classes biligues, como por exmeplo:
+
 
     .color-picker,
     .colour-picker{
@@ -352,12 +541,26 @@ dozens of colour variables (e.g. `$brand-color`, `$highlight-color` etc.),
 maintaining two versions of each variable soon became tiresome. It also means
 twice as much work with things like find and replace.
 
+Entretanto, como tenho trabalhado em um projeto muito vasto, onde havia dezenas
+de variaveis de cores (ex: '$brand-color', '.highlight-color' etc.), dar
+manutenção a duas versões de cada variável logo se tornou cansativo. Isso
+tambem quer dizer que é trabalho em dobro, tanto com coisas como localizar e 
+substituir
+
 In the interests of consistency, always name classes and variables in the locale
 of the language you are working with.
 
+
+O interessante disso é a cosistencia, sempre nomeie as classes e variáveis na
+lingua local que você esteja trabalhando
+
+
 ## Comments
+## Comentários
 
 I use a docBlock-esque commenting style which I limit to 80 characters in length:
+
+Eu uso comentários docBlock-esque com o limite de 80 caracteres por linha
 
     /**
      * This is a docBlock style comment
@@ -375,11 +578,33 @@ I use a docBlock-esque commenting style which I limit to 80 characters in length
      * copy and paste.
      */
 
+    /**
+     * Isto é um comentário de estilo docBlock 
+     * 
+     * Isto é uma longa descrição de um comentario, descrevendo o código e mais
+     * detalhes. Nós limitamos algumas linhas para o máximo de 80 caracteres
+     * 
+     * Nós podemos ter marcação nos comentarios, e estamos encorajados para fazer
+     * isso tambem
+     * 
+       <div class=foo>
+           <p>Lorem</p>
+       </div>
+     * 
+     * Nas linhas de códigos nós nao utilizamos prefixos de asterisco, isso inibiria
+     * o copiar de colar
+     */
+
 You should document and comment our code as much as you possibly can, what may
 seem or feel transparent and self explanatory to you may not be to another dev.
 Write a chunk of code then write about it.
 
+Voce deve documentar e comentar seu código o tanto que for possível, oque pode 
+parecer o transparecer claro e auto explicativo para você pode não parece para
+outro desenvolvedor. Escreva um pedaço de código, em seguida escreva sobre ele:
+
 ### Comments on steroids
+### Comentários em esteróides
 
 There are a number of more advanced techniques you can employ with regards
 comments, namely:
